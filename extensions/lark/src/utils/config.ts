@@ -1,7 +1,7 @@
 import { getPreferenceValues } from '@raycast/api';
 
 export interface Preference {
-  type: 'feishu' | 'lark';
+  type: 'feishu' | 'lark' | 'mioffice';
   recentListCount: number;
 }
 
@@ -13,7 +13,7 @@ export function getPreference(): Preference {
 
 export const preference = getPreference();
 
-export const DOMAIN = preference.type === 'feishu' ? 'feishu.cn' : 'larksuite.com';
+export const DOMAIN = preference.type === 'feishu' ? 'feishu.cn' : (preference.type === 'mioffice' ? 'f.mioffice.cn' : 'larksuite.com');;
 
 export function getDomain(sub?: string): string {
   return `https://${sub ? `${sub}.` : ''}${DOMAIN}`;
